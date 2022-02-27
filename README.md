@@ -10,7 +10,7 @@ Docker setup consisting out of Grafana incl. a pre-configured dashboard, InfluxD
 2. Clone this repository:
 
 ```shell
-git clone https://github.com/xinmans/tailscale-monitor.git
+git clone https://github.com/xinmans/docker-tailscale-monitor.git
 ```
 
 3. Create a copy of the sample `.env` file and adjust it at will:
