@@ -1,0 +1,18 @@
+{
+  "name": "tailscale_monitor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "xinmans",
+  "license": "ISC",
+  "dependencies": {
+    "delay": "^4.3.0",
+    "execa": "^4.1.0",
+    "influx": "^5.9.3",
+    "moment": "^2.29.1",
+    "os": "^0.1.2"
+  }
+}

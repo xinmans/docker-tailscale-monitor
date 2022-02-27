@@ -1,0 +1,39 @@
+version: '2'
+
+services:
+  influxdb:
+    restart: always
+    image: influxdb:1.8
+    ports:
+      - "8086:8086"
+    volumes:
+      - "./data/influxdb/:/var/lib/influxdb"
+    environment:
+      - "INFLUXDB_ADMIN_USER=root"
+      - "INFLUXDB_ADMIN_PASSWORD=root"
+      - "INFLUXDB_DB=tailscale"
+
+  grafana:
+    restart: always
+    image: grafana/grafana:6.7.2
+    volumes:
+      - "./docker/grafana/provisioning:/etc/grafana/provisioning"
+    ports:
+      - "${GRAFANA_PORT}:3000"
+    environment:
+      - "GF_SERVER_ROOT_URL=http://localhost"
+      - "GF_SECURITY_ADMIN_PASSWORD=admin"
+      - "GF_AUTH_ANONYMOUS_ENABLED=true"
+    depends_on:
+      - influxdb
+
+  tailscalemonitor:
+    restart: always
+    image: tailscale-monitor:latest
+    container_name: tailscale-monitor
+    environment:
+      - "TAILSCALE_INTERVAL=${TAILSCALE_INTERVAL}"
+      - "STAILSCALE_HOST=${TAILSCALE_HOST}"
+      - "INFLUXDB_HOST=${INFLUXDB_HOST}"
+    depends_on:
+      - influxdb
