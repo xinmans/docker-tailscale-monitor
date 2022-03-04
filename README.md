@@ -16,10 +16,18 @@ git clone https://github.com/xinmans/docker-tailscale-monitor.git
 3. Create a copy of the sample `.env` file and adjust it at will:
 
 ```shell
+cd docker-tailscale-monitor
 cp .env.sample .env
 ```
+4. edit .env, change TAILSCALE_SKEY & TAILSCALE_USER to your value
+login https://login.tailscale.com/admin/settings/keys to enable the API keys
 
-4. Spin up the containers:
+```
+TAILSCALE_SKEY=tsky-xxx-xxxxx
+TAILSCALE_USER=xxxx@xxxx.com
+```
+
+5. Spin up the containers:
 
 ```shell
 docker-compose up -d
